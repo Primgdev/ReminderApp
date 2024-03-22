@@ -1,40 +1,64 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-const [reminder, setReminder] = useState([]);
-const handleSubmit =() => {
-  const array = [...reminder];
-  array.push(input);
-  setReminder(array);
-  setInput("");
+  const [reminder, setReminder] = useState([]);
 
- 
-};//function 
-console.log(reminder);
-const [input, setInput] = useState("");
-const handleChange =(e) => {
-  setInput(e.target.value)
-};
+  const [input, setInput] = useState("");
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+  const handleSubmit = () => {
+    const array = [...reminder];
+    array.push(input);
+    setReminder(array);
+    setInput("");
+  }; //function
+
+  const handleDelete = (e, id) => {
+    console.log("id", id);
+    const copy = [...reminder];
+    copy.splice(id, 1);
+    setReminder(copy);
+  };
 
   return (
     <div className="App">
       <div className="background">
         <h1>Reminder App</h1>
-        <div className="reminderCount">0 Reminders</div>
 
         <input
           type="text"
           className="input"
           placeholder="Add new reminder"
-          onChange={(e)=> handleChange(e)}
+          value={input}
+          onChange={(e) => handleChange(e)}
         ></input>
 
-        <button type="button" className="done" onClick={handleSubmit}>Done</button>
+        <input
+          type="button"
+          className="save"
+          onClick={handleSubmit}
+          value="Submit"
+        />
       </div>
-      {
-        reminder && reminder.map((r) => <span>{r}<br /></span>)
-      }
+
+      <div className="count"> {reminder.length} Reminder</div>
+
+      {reminder &&
+        reminder.length &&
+        reminder.map((r, index) => (
+          <span key={index}>
+            {r} , {index}
+            <input
+              type="button"
+              value="Delete"
+              className="primary"
+              onClick={(e) => handleDelete(e, index)}
+            />
+            <br />
+          </span>
+        ))}
     </div>
   );
 }
