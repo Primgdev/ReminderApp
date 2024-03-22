@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
 
 function App() {
+const [reminder, setReminder] = useState([]);
+const handleSubmit =() => {
+  const array = [...reminder];
+  array.push(input);
+  setReminder(array);
+  setInput("");
+
+ 
+};//function 
+console.log(reminder);
+const [input, setInput] = useState("");
+const handleChange =(e) => {
+  setInput(e.target.value)
+};
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="background">
+        <h1>Reminder App</h1>
+        <div className="reminderCount">0 Reminders</div>
+
+        <input
+          type="text"
+          className="input"
+          placeholder="Add new reminder"
+          onChange={(e)=> handleChange(e)}
+        ></input>
+
+        <button type="button" className="done" onClick={handleSubmit}>Done</button>
+      </div>
+      {
+        reminder && reminder.map((r) => <span>{r}<br /></span>)
+      }
     </div>
   );
 }
