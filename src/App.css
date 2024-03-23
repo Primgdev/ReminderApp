@@ -7,6 +7,27 @@
   pointer-events: none;
 }
 
+.background
+{
+  background-color: lightcoral;
+  width: 50%;
+  margin: auto;
+  height:100%;
+
+}
+
+.input
+{
+  color: black;
+  border-radius: 5px;
+  height: 30px;
+  width: 200px;
+  margin-right: 10px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  letter-spacing: 1px;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

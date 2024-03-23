@@ -16,7 +16,6 @@ function App() {
   }; //function
 
   const handleDelete = (e, id) => {
-    console.log("id", id);
     const copy = [...reminder];
     copy.splice(id, 1);
     setReminder(copy);
@@ -39,26 +38,27 @@ function App() {
           type="button"
           className="save"
           onClick={handleSubmit}
-          value="Submit"
+          value="Save"
         />
-      </div>
+        
+      
 
       <div className="count"> {reminder.length} Reminder</div>
 
       {reminder &&
-        reminder.length &&
         reminder.map((r, index) => (
           <span key={index}>
-            {r} , {index}
+            {r} 
             <input
               type="button"
-              value="Delete"
+              value="Done"
               className="primary"
               onClick={(e) => handleDelete(e, index)}
             />
             <br />
           </span>
         ))}
+    </div>
     </div>
   );
 }
