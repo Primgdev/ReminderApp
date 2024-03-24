@@ -3,16 +3,21 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [reminder, setReminder] = useState([]);
-
   const [input, setInput] = useState("");
+  const [notes, setNotes] = useState([]);
   const handleChange = (e) => {
     setInput(e.target.value);
   };
   const handleSubmit = () => {
-    const array = [...reminder];
-    array.push(input);
-    setReminder(array);
-    setInput("");
+    if (input == "") {
+      alert("Please put reminder first.");
+    } else {
+      const array = [...reminder];
+      array.push(input);
+      setReminder(array);
+      setInput("");
+      setNotes([...notes, input]);
+    }
   }; //function
 
   const handleDelete = (e, id) => {
@@ -40,25 +45,23 @@ function App() {
           onClick={handleSubmit}
           value="Save"
         />
-        
-      
 
-      <div className="count"> {reminder.length} Reminder</div>
+        <div className="count" > {reminder.length} Reminder</div>
 
-      {reminder &&
-        reminder.map((r, index) => (
-          <span key={index}>
-            {r} 
-            <input
-              type="button"
-              value="Done"
-              className="primary"
-              onClick={(e) => handleDelete(e, index)}
-            />
-            <br />
-          </span>
-        ))}
-    </div>
+        {reminder &&
+          reminder.map((r, index) => (
+            <span key={index + 1}>
+              {index + 1}. {r} 
+              <input
+                type="button"
+                value="Done"
+                className="primary"
+                onClick={(e) => handleDelete(e, index)}
+              />
+              <br />
+            </span>
+          ))}
+      </div>
     </div>
   );
 }
