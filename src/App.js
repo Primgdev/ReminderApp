@@ -9,15 +9,11 @@ function App() {
     setInput(e.target.value);
   };
   const handleSubmit = () => {
-    if (input == "") {
-      alert("Please put reminder first.");
-    } else {
-      const array = [...reminder];
-      array.push(input);
-      setReminder(array);
-      setInput("");
-      setNotes([...notes, input]);
-    }
+    const array = [...reminder];
+    array.push(input);
+    setReminder(array);
+    setInput("");
+    setNotes([...notes, input]);
   }; //function
 
   const handleDelete = (e, id) => {
@@ -29,7 +25,7 @@ function App() {
   return (
     <div className="App">
       <div className="background">
-        <h1>Reminder App</h1>
+        <h1>Reminder</h1>
 
         <input
           type="text"
@@ -44,20 +40,29 @@ function App() {
           className="save"
           onClick={handleSubmit}
           value="Save"
+          disabled={!input && "true"}
         />
 
-        <div className="count" > {reminder.length} Reminder</div>
+        {/* <div className="count"> {reminder.length} Reminder</div> */}
+
+        <div className="title">My Lists</div>
 
         {reminder &&
           reminder.map((r, index) => (
-            <span key={index + 1}>
-              {index + 1}. {r} 
+            <span key={index}>
               <input
-                type="button"
+                type="radio"
                 value="Done"
                 className="primary"
                 onClick={(e) => handleDelete(e, index)}
+                checked={false}
               />
+  
+
+              {r}
+            
+              {/* {index + 1}. {r}  */}
+
               <br />
             </span>
           ))}

@@ -4,7 +4,7 @@
   letter-spacing: 1px;
   word-spacing: 5px;
   font-size: 25px;
-  color: white
+  color: white;
 }
 
 .App-logo {
@@ -39,26 +39,22 @@
   color: white;
   letter-spacing: 1px;
   font-size: 18px;
-  background-color: #04AA6D;;
+  background-color: #04aa6d;
 }
 
-.count{
+.count {
   margin: 25px;
   text-decoration: 2px underline;
   font-size: 35px;
-  
 }
 
-.primary
-{
-  margin: auto;
+.primary {
   margin: 10px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 18px;
   border-radius: 5px;
   color: white;
-  background-color: #f44336; 
-  
+  background-color: #f44336;
   
 }
 
