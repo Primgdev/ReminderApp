@@ -44,8 +44,12 @@ function App() {
         />
 
         {/* <div className="count"> {reminder.length} Reminder</div> */}
-
-        <div className="title">My Lists</div>
+        {/* if else statement  */}
+        {reminder && reminder.length ? (
+          <div className="title">My Lists</div>
+        ) : (
+          ""
+        )}
 
         {reminder &&
           reminder.map((r, index) => (
@@ -57,10 +61,9 @@ function App() {
                 onClick={(e) => handleDelete(e, index)}
                 checked={false}
               />
-  
 
               {r}
-            
+
               {/* {index + 1}. {r}  */}
 
               <br />
