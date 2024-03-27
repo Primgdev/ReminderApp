@@ -22,6 +22,13 @@ function App() {
     setReminder(copy);
   };
 
+  const detectKey = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+      
+    }
+  };
+
   return (
     <div className="App">
       <div className="filters">
@@ -29,24 +36,36 @@ function App() {
 
         {reminder &&
           reminder.map((r, index) => (
-            <div className="task">
-            <input
+            <div className="task" key={index}>
+              <input
                 type="radio"
                 value="Done"
                 className="primary"
                 onClick={(e) => handleDelete(e, index)}
-                checked={false}
-                style={{width:"8%"}}
+        
+                style={{ width: "8%" }}
               />
-            <span key={index} style={{fontSize:"15px", padding:"10px", alignContent:"center", width:"100%", backgroundColor:"#2f2d36", borderRadius:"10px", marginRight:"20px", color:"white", opacity:"0.6"}}>
-              
+              <span
+                key={index}
+                style={{
+                  fontSize: "15px",
+                  padding: "10px",
+                  alignContent: "center",
+                  width: "100%",
+                  backgroundColor: "#2f2d36",
+                  borderRadius: "10px",
+                  marginRight: "20px",
+                  color: "white",
+                  opacity: "0.6",
+                }}
+              >
+                {r}
 
-              {r}
+                {/* {index + 1}. {r}  */}
 
-              {/* {index + 1}. {r}  */}
-
-              <br />
-            </span> </div>
+                <br />
+              </span>{" "}
+            </div>
           ))}
       </div>
 
@@ -58,15 +77,15 @@ function App() {
           placeholder="Enter reminder"
           value={input}
           onChange={(e) => handleChange(e)}
+          onKeyUp={detectKey}
         ></input>
 
-        <input
+        {/* <input
           type="button"
           className="save"
           onClick={handleSubmit}
           value="Save"
-          disabled={!input && "true"}
-        />
+        /> */}
 
         {/* <div className="count"> {reminder.length} Reminder</div> */}
         {/* if else statement  */}
