@@ -1,64 +1,100 @@
 .App {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   text-align: center;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: "Cedarville Cursive", cursive;
+  font-weight: 400;
+  font-style: normal; 
   letter-spacing: 1px;
   word-spacing: 5px;
-  font-size: 25px;
-  color: white;
+  color: #8d8fd3;
+  height: 100vh;
+  background: #121215;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
 .background {
-  background-color: rgb(151, 146, 146);
-  width: 50%;
+  background-color: #18181c;
+  width: 60%;
   margin: auto;
-  height: 100%;
-  margin-top: 5px;
+  height: 500px;
   border-radius: 25px;
-  border: 2px solid rgb(64, 54, 54);
+  margin-right: 20px;
+
+  h3{
+    width: 100%;
+    text-align: left;
+    margin-left: 20px;
+  }
 }
 
-.input {
-  color: grey;
-  border-radius: 5px;
+.filters {
+  width: 40%;
+  margin: auto;
+  height: 500px;
+  background-color: #18181c;
+  border-radius: 25px;
+  margin-right: 20px;
+  margin-left: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  h3{
+    width: 100%;
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 20px ;
+  }
+}
+
+.data {
+  color: white;
+  background-color: #2f2d36;
+  border-radius: 10px;
   height: 30px;
   width: 200px;
   margin-right: 10px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   letter-spacing: 1px;
 }
 
 .save {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   height: 30px;
+  width:25%;
   border-radius: 5px;
   color: white;
-  letter-spacing: 1px;
-  font-size: 18px;
-  background-color: #04aa6d;
+  font-family: "Cedarville Cursive", cursive;
+  font-weight: 600;
+  font-style: normal;
+  background-color: #8361f6;
 }
-
 .count {
   margin: 25px;
   text-decoration: 2px underline;
   font-size: 35px;
+  
 }
 
 .primary {
   margin: 10px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 18px;
   border-radius: 5px;
   color: white;
   background-color: #f44336;
   text-align: right;
+  
 }
 
+.task
+{
+  display: flex;
+  margin-bottom: 10px;
+  word-break: break-all;
+  text-align: justify;
 
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
