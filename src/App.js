@@ -24,13 +24,38 @@ function App() {
 
   return (
     <div className="App">
-      <div className="background">
-        <h1>Reminder</h1>
+      <div className="filters">
+        <h3>Reminder</h3>
 
+        {reminder &&
+          reminder.map((r, index) => (
+            <div className="task">
+            <input
+                type="radio"
+                value="Done"
+                className="primary"
+                onClick={(e) => handleDelete(e, index)}
+                checked={false}
+                style={{width:"8%"}}
+              />
+            <span key={index} style={{fontSize:"15px", padding:"10px", alignContent:"center", width:"100%", backgroundColor:"#2f2d36", borderRadius:"10px", marginRight:"20px", color:"white", opacity:"0.6"}}>
+              
+
+              {r}
+
+              {/* {index + 1}. {r}  */}
+
+              <br />
+            </span> </div>
+          ))}
+      </div>
+
+      <div className="background">
+        <h3> Add Reminder</h3>
         <input
           type="text"
-          className="input"
-          placeholder="Add new reminder"
+          className="data"
+          placeholder="Enter reminder"
           value={input}
           onChange={(e) => handleChange(e)}
         ></input>
@@ -45,30 +70,6 @@ function App() {
 
         {/* <div className="count"> {reminder.length} Reminder</div> */}
         {/* if else statement  */}
-        {reminder && reminder.length ? (
-          <div className="title">My Lists</div>
-        ) : (
-          ""
-        )}
-
-        {reminder &&
-          reminder.map((r, index) => (
-            <span key={index}>
-              <input
-                type="radio"
-                value="Done"
-                className="primary"
-                onClick={(e) => handleDelete(e, index)}
-                checked={false}
-              />
-
-              {r}
-
-              {/* {index + 1}. {r}  */}
-
-              <br />
-            </span>
-          ))}
       </div>
     </div>
   );
