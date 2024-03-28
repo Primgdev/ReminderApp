@@ -23,7 +23,7 @@ function App() {
   };
 
   const detectKey = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && input) {
       handleSubmit();
       
     }
