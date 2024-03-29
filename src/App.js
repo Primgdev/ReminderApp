@@ -5,6 +5,7 @@ function App() {
   const [reminder, setReminder] = useState([]);
   const [input, setInput] = useState("");
   const [notes, setNotes] = useState([]);
+  
   const handleChange = (e) => {
     setInput(e.target.value.trim()); //.trim() to not use space as a string
   };
@@ -14,6 +15,7 @@ function App() {
     setReminder(array);
     setInput("");
     setNotes([...notes, input]);
+    
   }; //function
 
   const handleDelete = (e, id) => {
@@ -24,6 +26,7 @@ function App() {
 
   const detectKey = (e) => {
     if (e.key === "Enter" && input) {
+      
       handleSubmit();
       
     }
@@ -37,13 +40,14 @@ function App() {
         {reminder &&
           reminder.map((r, index) => (
             <div className="task" key={index}>
-              <input
-                type="radio"
-                value="Done"
+              <div
+                // type="radio"
+                // value="Done"
+                
                 className="primary"
                 onClick={(e) => handleDelete(e, index)}
         
-                style={{ width: "8%" }}
+                // style={{ width: "8%" }}
               />
               <span
                 key={index}
