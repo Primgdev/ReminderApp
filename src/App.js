@@ -6,7 +6,7 @@ function App() {
   const [input, setInput] = useState("");
   const [notes, setNotes] = useState([]);
   const handleChange = (e) => {
-    setInput(e.target.value);
+    setInput(e.target.value.trim()); //.trim() to not use space as a string
   };
   const handleSubmit = () => {
     const array = [...reminder];
@@ -48,7 +48,7 @@ function App() {
               <span
                 key={index}
                 style={{
-                  fontSize: "15px",
+                  fontSize: "18px",
                   padding: "10px",
                   alignContent: "center",
                   width: "100%",
