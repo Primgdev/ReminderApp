@@ -98,6 +98,7 @@
   text-decoration: line-through;
   text-decoration-color: red;
   text-decoration-thickness: 3px;
+  animation: fadeIn 0.5s;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -143,4 +144,8 @@
     margin: 0;
     border: none;
   }
+  
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
