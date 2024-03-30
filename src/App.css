@@ -98,7 +98,7 @@
   margin-bottom: 10px;
   word-break: break-all;
   text-align: justify;
-
+  animation: fadeIn 0.5s;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -129,4 +129,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
