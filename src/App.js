@@ -1,11 +1,11 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
   const [reminder, setReminder] = useState([]);
   const [input, setInput] = useState("");
   const [notes, setNotes] = useState([]);
-  
+
   const handleChange = (e) => {
     setInput(e.target.value.trimStart()); //.trimStart() to not use space as a string before any word
   };
@@ -15,20 +15,19 @@ function App() {
     setReminder(array);
     setInput("");
     setNotes([...notes, input]);
-    
   }; //function
 
   const handleDelete = (e, id) => {
-    const copy = [...reminder];
-    copy.splice(id, 1);
-    setReminder(copy);
+    console.log(e);
+    e.target.classList.add("strikethrough");
+    // const copy = [...reminder];
+    // copy.splice(id, 1);
+    // setReminder(copy);
   };
 
   const detectKey = (e) => {
     if (e.key === "Enter" && input) {
-      
       handleSubmit();
-      
     }
   };
 
@@ -39,16 +38,12 @@ function App() {
 
         {reminder &&
           reminder.map((r, index) => (
-            <div className="task" key={index}>
-              <div
-                // type="radio"
-                // value="Done"
-                
-                className="primary"
-                onClick={(e) => handleDelete(e, index)}
-        
-                // style={{ width: "8%" }}
-              />
+            <div
+              className="task"
+              key={index}
+              onClick={(e) => handleDelete(e, index)}
+            >
+              <div className="primary" />
               <span
                 key={index}
                 style={{
@@ -61,7 +56,7 @@ function App() {
                   marginRight: "20px",
                   color: "white",
                   opacity: "0.6",
-                  height:"auto",
+                  height: "auto",
                 }}
               >
                 {r}
