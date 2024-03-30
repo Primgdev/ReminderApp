@@ -7,7 +7,7 @@ function App() {
   const [notes, setNotes] = useState([]);
   
   const handleChange = (e) => {
-    setInput(e.target.value.trim()); //.trim() to not use space as a string
+    setInput(e.target.value.trimStart()); //.trimStart() to not use space as a string before any word
   };
   const handleSubmit = () => {
     const array = [...reminder];
@@ -61,6 +61,7 @@ function App() {
                   marginRight: "20px",
                   color: "white",
                   opacity: "0.6",
+                  height:"auto",
                 }}
               >
                 {r}
