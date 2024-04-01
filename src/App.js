@@ -1,10 +1,12 @@
 import "./App.css";
-import { useState } from "react";
+import { useState , useEffect} from "react";
+import { CookiesProvider, useCookies } from "react-cookie";
 
 function App() {
   const [reminder, setReminder] = useState([]);
   const [input, setInput] = useState("");
   const [notes, setNotes] = useState([]);
+  const [cookies, setCookie] = useCookies(["reminders"]);
 
   const handleChange = (e) => {
     setInput(e.target.value.trimStart()); //.trimStart() to not use space as a string before any word
@@ -15,6 +17,7 @@ function App() {
     setReminder(array);
     setInput("");
     setNotes([...notes, input]);
+    setCookie("reminders", array, { path: "/" });
   }; //function
 
   const handleDelete = (e, id) => {
@@ -30,6 +33,12 @@ function App() {
       handleSubmit();
     }
   };
+
+
+  useEffect(() => {
+    const remindersFromCookies = cookies.reminders;
+    remindersFromCookies && setReminder([...remindersFromCookies]);
+  },[cookies])
 
   return (
     <div className="App">
