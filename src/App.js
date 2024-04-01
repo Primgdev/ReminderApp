@@ -1,12 +1,12 @@
 import "./App.css";
 import { useState , useEffect} from "react";
-import { CookiesProvider, useCookies } from "react-cookie";
+// import { CookiesProvider, useCookies } from "react-cookie";
 
 function App() {
   const [reminder, setReminder] = useState([]);
   const [input, setInput] = useState("");
   const [notes, setNotes] = useState([]);
-  const [cookies, setCookie] = useCookies(["reminders"]);
+  // const [cookies, setCookie] = useCookies(["reminders"]);
 
   const handleChange = (e) => {
     setInput(e.target.value.trimStart()); //.trimStart() to not use space as a string before any word
@@ -17,7 +17,7 @@ function App() {
     setReminder(array);
     setInput("");
     setNotes([...notes, input]);
-    setCookie("reminders", array, { path: "/" });
+    localStorage.setItem('reminders', JSON.stringify(array));
   }; //function
 
   const handleDelete = (e, id) => {
@@ -36,9 +36,9 @@ function App() {
 
 
   useEffect(() => {
-    const remindersFromCookies = cookies.reminders;
-    remindersFromCookies && setReminder([...remindersFromCookies]);
-  },[cookies])
+    const remindersFromLocalStorage = JSON.parse(localStorage.getItem('reminders'));
+    remindersFromLocalStorage && setReminder([...remindersFromLocalStorage]);
+  },[])
 
   return (
     <div className="App">
