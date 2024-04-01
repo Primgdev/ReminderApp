@@ -1,5 +1,7 @@
 import "./App.css";
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
+import Input from "./components/input";
+import Reminder from "./components/reminder";
 // import { CookiesProvider, useCookies } from "react-cookie";
 
 function App() {
@@ -17,7 +19,7 @@ function App() {
     setReminder(array);
     setInput("");
     setNotes([...notes, input]);
-    localStorage.setItem('reminders', JSON.stringify(array));
+    localStorage.setItem("reminders", JSON.stringify(array));
   }; //function
 
   const handleDelete = (e, id) => {
@@ -34,70 +36,25 @@ function App() {
     }
   };
 
-
   useEffect(() => {
-    const remindersFromLocalStorage = JSON.parse(localStorage.getItem('reminders'));
+    const remindersFromLocalStorage = JSON.parse(
+      localStorage.getItem("reminders")
+    );
     remindersFromLocalStorage && setReminder([...remindersFromLocalStorage]);
-  },[])
+  }, []);
 
   return (
     <div className="App">
       <div className="filters">
         <h3>Reminder</h3>
-
-        {reminder &&
-          reminder.map((r, index) => (
-            <div
-              className="task"
-              key={index}
-              onClick={(e) => handleDelete(e, index)}
-            >
-              <div className="primary" />
-              <span
-                key={index}
-                style={{
-                  fontSize: "18px",
-                  padding: "10px",
-                  alignContent: "center",
-                  width: "100%",
-                  backgroundColor: "#2f2d36",
-                  borderRadius: "10px",
-                  marginRight: "20px",
-                  color: "white",
-                  opacity: "0.6",
-                  height: "auto",
-                }}
-              >
-                {r}
-
-                {/* {index + 1}. {r}  */}
-
-                <br />
-              </span>{" "}
-            </div>
-          ))}
+        <Reminder reminder={reminder} handleDelete={handleDelete} />
       </div>
-
       <div className="background">
-        <h3> Add Reminder</h3>
-        <input
-          type="text"
-          className="data"
-          placeholder="Enter reminder"
-          value={input}
-          onChange={(e) => handleChange(e)}
-          onKeyUp={detectKey}
-        ></input>
-
-        {/* <input
-          type="button"
-          className="save"
-          onClick={handleSubmit}
-          value="Save"
-        /> */}
-
-        {/* <div className="count"> {reminder.length} Reminder</div> */}
-        {/* if else statement  */}
+        <Input
+          input={input}
+          handleChange={handleChange}
+          detectKey={detectKey}
+        />
       </div>
     </div>
   );
