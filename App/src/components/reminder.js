@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {getReminders} from '../service/reminder';
 
 export default function Reminder({ reminder, handleDelete }) {
+
+  const [reminders, setReminders] = useState([]);
+
+  useEffect(() => {
+    getReminders().then((datas) => {
+      console.log('datas', datas);
+    }); 
+
+  }, []);
+
   return (
     <div>
       {reminder &&

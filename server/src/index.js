@@ -4,12 +4,13 @@ import cors from 'cors';
 import './env.js';
 import './db.js';
 import config from './config.js';
+import reminderRoutes from './routes/reminder.js';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+app.use('/api/reminder', reminderRoutes)
 // app.use('/api/reminders');
 const port = 6000;
 
