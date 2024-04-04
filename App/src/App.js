@@ -10,9 +10,25 @@ function App() {
   const [input, setInput] = useState("");
   const [notes, setNotes] = useState([]);
   // const [cookies, setCookie] = useCookies(["reminders"]);
+  const url =
+    "https://res.cloudinary.com/dvmumi2mb/video/upload/v1712205916/tap-notification-180637_veyyet.mp3";
+  const [audio] = useState(new Audio(url));
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    playing ? audio.play() : audio.pause();
+  }, [playing]);
+
+  useEffect(() => {
+    if(playing) {
+      setTimeout(() => {
+        setPlaying(false);
+      },500);
+    }
+  },[playing])
 
   const handleChange = (e) => {
-    setInput(e.target.value.trimStart()); //.trimStart() to not use space as a string before any word
+    setInput(e.target.value.trimStart());//.trimStart() to not use space as a string before any word
   };
   const handleSubmit = () => {
     const array = [...reminder];
@@ -21,6 +37,7 @@ function App() {
     setInput("");
     setNotes([...notes, input]);
     // localStorage.setItem("reminders", JSON.stringify(array));
+    setPlaying(true); 
     postReminders(input);
   }; //function
 
@@ -57,6 +74,7 @@ function App() {
           handleChange={handleChange}
           detectKey={detectKey}
         />
+
       </div>
     </div>
   );
