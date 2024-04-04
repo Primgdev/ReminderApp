@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import Input from "./components/input";
 import Reminder from "./components/reminder";
+import { postReminders } from "./service/reminder";
 // import { CookiesProvider, useCookies } from "react-cookie";
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
     setReminder(array);
     setInput("");
     setNotes([...notes, input]);
-    localStorage.setItem("reminders", JSON.stringify(array));
+    // localStorage.setItem("reminders", JSON.stringify(array));
+    postReminders(input);
   }; //function
 
   const handleDelete = (e, id) => {
