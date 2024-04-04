@@ -45,7 +45,7 @@ export default function Reminder({ reminder, handleDelete, fetch, setFetch }) {
               {/* {index + 1}. {r}  */}
 
               <br />
-            </span>{" "}
+           
           </div>
         ))}
     </div>
