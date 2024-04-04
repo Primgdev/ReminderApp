@@ -7,23 +7,23 @@ export default function Reminder({ reminder, handleDelete }) {
 
   useEffect(() => {
     getReminders().then((datas) => {
-      console.log('datas', datas);
+      setReminders(datas);
     }); 
 
   }, []);
 
   return (
     <div>
-      {reminder &&
-        reminder.map((r, index) => (
+      {reminders && reminders.length && 
+        reminders.map((reminder) => (
           <div
             className="task"
-            key={index}
-            onClick={(e) => handleDelete(e, index)}
+            key={reminder.id}
+            onClick={(e) => handleDelete(e, reminder.id)}
           >
             <div className="primary" />
             <span
-              key={index}
+              key={reminder.id}
               style={{
                 fontSize: "18px",
                 padding: "10px",
@@ -37,7 +37,7 @@ export default function Reminder({ reminder, handleDelete }) {
                 height: "auto",
               }}
             >
-              {r}
+              {reminder.value}
 
               {/* {index + 1}. {r}  */}
 
