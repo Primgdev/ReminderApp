@@ -11,7 +11,7 @@ export const postReminder = async ({message}) => {
 }
 
 export const getReminder = async ({message}) => {
-    const query = `select * from reminders;`;
+    const query = `select * from reminders where isDeleted = 0;`;
 
     const [rows] = await pool.promise().query(query);
 

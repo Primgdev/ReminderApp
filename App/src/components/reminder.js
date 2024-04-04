@@ -10,7 +10,7 @@ export default function Reminder({ reminder, handleDelete }) {
       setReminders(datas);
     }); 
 
-  }, []);
+  }, [reminder]);
 
   return (
     <div>
