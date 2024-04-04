@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/reminder', reminderRoutes)
 // app.use('/api/reminders');
-const port = 6000;
+const port = 3001;
 
 
 app.get('/', (req, res) => {
