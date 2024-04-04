@@ -19,7 +19,7 @@ export const getReminder = async ({message}) => {
 }
 
 export const deleteReminder = async ({id}) => {
-    const query = `DELETE FROM reminders WHERE id = ${id}`;
+    const query = `UPDATE reminders SET isDeleted = 1 WHERE id = ${id}`;
 
     const [rows] = await pool.promise().query(query);
 

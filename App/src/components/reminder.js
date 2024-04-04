@@ -14,7 +14,7 @@ export default function Reminder({ reminder, handleDelete }) {
 
   return (
     <div>
-      {reminders && reminders.length && 
+      {reminders && reminders.length > 0 && 
         reminders.map((reminder) => (
           <div
             className="task"
