@@ -8,4 +8,6 @@ router.post('/post-reminder', reminderController.postReminder);
 
 router.get('/get-reminder', reminderController.getReminder);
 
+router.post('/delete-reminder', reminderController.deleteReminder);
+
 export default router;

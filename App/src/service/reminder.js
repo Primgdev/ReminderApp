@@ -25,3 +25,16 @@ export const postReminders = async (message) => {
     console.error("Fetch failed" + error.message);
   }
 };
+
+export const deleteReminder = async (id) => {
+  try {
+    const response = await http.post("/reminder/delete-reminder", { id });
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error("Fetch failed");
+    }
+  } catch (error) {
+    console.error("Fetch failed:" + error.message);
+  }
+};

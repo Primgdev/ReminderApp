@@ -2,13 +2,14 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import Input from "./components/input";
 import Reminder from "./components/reminder";
-import { postReminders } from "./service/reminder";
+import { deleteReminder, postReminders } from "./service/reminder";
 // import { CookiesProvider, useCookies } from "react-cookie";
 
 function App() {
   const [reminder, setReminder] = useState([]);
   const [input, setInput] = useState("");
   const [notes, setNotes] = useState([]);
+
   // const [cookies, setCookie] = useCookies(["reminders"]);
   const url =
     "https://res.cloudinary.com/dvmumi2mb/video/upload/v1712205916/tap-notification-180637_veyyet.mp3";
@@ -42,8 +43,8 @@ function App() {
   }; //function
 
   const handleDelete = (e, id) => {
-    console.log(e);
     e.target.classList.add("strikethrough");
+    deleteReminder(id);
     // const copy = [...reminder];
     // copy.splice(id, 1);
     // setReminder(copy);
