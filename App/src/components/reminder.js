@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
-import {getReminders} from '../service/reminder';
+import { getReminders } from "../service/reminder";
 
-export default function Reminder({ reminder, handleDelete }) {
-
+export default function Reminder({ reminder, handleDelete, fetch, setFetch }) {
   const [reminders, setReminders] = useState([]);
 
   useEffect(() => {
     getReminders().then((datas) => {
       setReminders(datas);
-    }); 
+    });
 
-  }, [reminder]);
+    return () => {
+      setTimeout(() => setFetch(false), 500);
+    };
+  }, [reminder, fetch]);
 
   return (
     <div>
-      {reminders && reminders.length > 0 && 
+      {reminders &&
+        reminders.length > 0 &&
         reminders.map((reminder) => (
           <div
             className="task"

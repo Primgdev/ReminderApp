@@ -9,6 +9,7 @@ function App() {
   const [reminder, setReminder] = useState([]);
   const [input, setInput] = useState("");
   const [notes, setNotes] = useState([]);
+  const [fetch, setFetch] = useState(false);
 
   // const [cookies, setCookie] = useCookies(["reminders"]);
   const url =
@@ -21,30 +22,32 @@ function App() {
   }, [playing]);
 
   useEffect(() => {
-    if(playing) {
+    if (playing) {
       setTimeout(() => {
         setPlaying(false);
-      },500);
+      }, 500);
     }
-  },[playing])
+  }, [playing]);
 
   const handleChange = (e) => {
-    setInput(e.target.value.trimStart());//.trimStart() to not use space as a string before any word
+    setInput(e.target.value.trimStart()); //.trimStart() to not use space as a string before any word
   };
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const array = [...reminder];
     array.push(input);
     setReminder(array);
     setInput("");
     setNotes([...notes, input]);
     // localStorage.setItem("reminders", JSON.stringify(array));
-    setPlaying(true); 
-    postReminders(input);
+    setPlaying(true);
+    const res = await postReminders(input);
+    if (res.insertId) setFetch(true);
   }; //function
 
-  const handleDelete = (e, id) => {
+  const handleDelete = async (e, id) => {
     e.target.classList.add("strikethrough");
-    deleteReminder(id);
+    const res = await deleteReminder(id);
+    if (res.affectedRows) setFetch(true);
     // const copy = [...reminder];
     // copy.splice(id, 1);
     // setReminder(copy);
@@ -67,7 +70,12 @@ function App() {
     <div className="App">
       <div className="filters">
         <h3>Reminder</h3>
-        <Reminder reminder={reminder} handleDelete={handleDelete} />
+        <Reminder
+          reminder={reminder}
+          handleDelete={handleDelete}
+          fetch={fetch}
+          setFetch={setFetch}
+        />
       </div>
       <div className="background">
         <Input
@@ -75,7 +83,6 @@ function App() {
           handleChange={handleChange}
           detectKey={detectKey}
         />
-
       </div>
     </div>
   );
