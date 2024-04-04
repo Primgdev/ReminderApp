@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import Input from "./components/input";
 import Reminder from "./components/reminder";
+import useSound from 'use-sound';
 // import { CookiesProvider, useCookies } from "react-cookie";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
   const [input, setInput] = useState("");
   const [notes, setNotes] = useState([]);
   // const [cookies, setCookie] = useCookies(["reminders"]);
+  const [playSound] = useSound('sound.mp3');
 
   const handleChange = (e) => {
     setInput(e.target.value.trimStart()); //.trimStart() to not use space as a string before any word
