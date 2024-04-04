@@ -18,3 +18,13 @@ export async function getReminder(req, res, next)
         next(err);
     }
 }
+
+export async function deleteReminder(req, res, next)
+{
+    try{
+        const data = await reminderService.deleteReminder(req.body);
+        return res.json(data);
+    }catch(err){
+        next(err);
+    }
+}

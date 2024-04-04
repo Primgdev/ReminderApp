@@ -17,3 +17,11 @@ export const getReminder = async ({message}) => {
 
     return rows;
 }
+
+export const deleteReminder = async ({id}) => {
+    const query = `DELETE FROM reminders WHERE id = ${id}`;
+
+    const [rows] = await pool.promise().query(query);
+
+    return rows;
+}
